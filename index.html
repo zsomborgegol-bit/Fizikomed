@@ -143,14 +143,15 @@ const content = {
   },
 };
 
+
 function Fizikomed() {
-  const [lang, setLang] = useState("hu");
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenu, setMobileMenu] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+  const [lang, setLang] = React.useState("hu");
+  const [scrolled, setScrolled] = React.useState(false);
+  const [mobileMenu, setMobileMenu] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState("hero");
   const t = content[lang];
 
-  useEffect(() => {
+  React.useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
       const sections = ["hero", "painpoints", "services", "about", "contact"];
@@ -167,254 +168,443 @@ function Fizikomed() {
   }, []);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id) && document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     setMobileMenu(false);
   };
 
+  const SvgSpine = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="8" y="1" width="8" height="5" rx="1.5"/><rect x="8" y="9.5" width="8" height="5" rx="1.5"/><rect x="8" y="18" width="8" height="5" rx="1.5"/>
+      <line x1="12" y1="6" x2="12" y2="9.5"/><line x1="12" y1="14.5" x2="12" y2="18"/>
+    </svg>
+  );
+  const SvgBody = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="4" r="2.2"/><path d="M8 9.5h8"/><path d="M12 6.2v6.5"/><path d="M9.5 12.7l-2 8.8"/><path d="M14.5 12.7l2 8.8"/>
+    </svg>
+  );
+  const SvgBrain = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9.5 2a2.5 2.5 0 0 1 5 0v.5a5 5 0 0 1 4 4.9A3.5 3.5 0 0 1 17 11a4.5 4.5 0 0 1-5 4.5A4.5 4.5 0 0 1 7 11a3.5 3.5 0 0 1-1.5-3.6A5 5 0 0 1 9.5 2.5V2z"/>
+      <line x1="12" y1="15.5" x2="12" y2="22"/>
+    </svg>
+  );
+  const SvgShield = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2l8 3v7c0 5.25-4 8.75-8 10C8 20.75 4 17.25 4 12V5l8-3z"/>
+      <line x1="12" y1="8" x2="12" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/>
+    </svg>
+  );
+  const SvgHeartPulse = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/>
+      <path d="M3.5 12h4.5l1.5-3 2 5 1.5-2.5 1 .5h3.5"/>
+    </svg>
+  );
+  const SvgDumbbell = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6.5 6.5h.01M6.5 17.5h.01M17.5 6.5h.01M17.5 17.5h.01"/>
+      <rect x="5" y="5" width="3" height="14" rx="1.5"/><rect x="16" y="5" width="3" height="14" rx="1.5"/>
+      <line x1="8" y1="12" x2="16" y2="12"/>
+    </svg>
+  );
+  const SvgRefresh = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
+    </svg>
+  );
+  const SvgBandage = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7.5 14.5l-2.4-2.4a2 2 0 0 1 0-2.83l7.7-7.7a2 2 0 0 1 2.83 0l2.4 2.4a2 2 0 0 1 0 2.83l-7.7 7.7a2 2 0 0 1-2.83 0z"/>
+      <path d="M10.5 10.5l-1.5 1.5"/><path d="M13 8l-1.5 1.5"/>
+      <path d="M4.5 14.5l5 5"/><path d="M14.5 4.5l5 5"/>
+    </svg>
+  );
+  const SvgDroplets = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/>
+      <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/>
+    </svg>
+  );
+  const SvgTarget = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+      <line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/>
+      <line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/>
+    </svg>
+  );
+  const SvgZap = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
+    </svg>
+  );
+  const SvgWave = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 12h2.5l2-6.5 3 13 3-9.5 2 3 1.5-3.5 1.5 4.5H22"/>
+    </svg>
+  );
+  const SvgBed = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 9h20v11H2z" rx="2"/><circle cx="6.5" cy="14" r="2"/>
+      <path d="M12.5 14h6"/><path d="M12 9V6"/><path d="M10 6h4"/>
+    </svg>
+  );
+
+  const SvgIcons = [SvgSpine, SvgBody, SvgBrain, SvgShield, SvgHeartPulse, SvgDumbbell, SvgRefresh, SvgBandage, SvgDroplets, SvgTarget, SvgZap, SvgWave, SvgBed];
+
+  const IconLocation = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+    </svg>
+  );
+  const IconPhone = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41 2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.16v-.24z"/>
+    </svg>
+  );
+  const IconEmail = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <polyline points="22,6 12,13 2,6"/>
+    </svg>
+  );
+  const IconClock = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    </svg>
+  );
+
+  const contactItems = [
+    { Icon: IconLocation, key: "address" },
+    { Icon: IconPhone, key: "phone" },
+    { Icon: IconEmail, key: "email" },
+    { Icon: IconClock, key: "hours" },
+  ];
+  const contactValues = [t.contact.addressVal, "+36 70 770 9053", "testkepzes@gmail.com", t.contact.hoursVal];
+  const contactLabels = [t.contact.address, t.contact.phone, t.contact.email, t.contact.hours];
+
+  const aboutFeatures = lang === "hu" ? [
+    "25 éves tapasztalat a mozgásszervi rehabilitációban",
+    "Egyénre szabott kezelési tervek minden páciensnek",
+    "Modern terápiás módszerek és eszközök alkalmazása",
+    "Több mint 1000 kezelt eset pozitív visszajelzéssel",
+  ] : [
+    "25 years of experience in musculoskeletal rehabilitation",
+    "Individualized treatment plans for every patient",
+    "Application of modern therapeutic methods and equipment",
+    "Over 1,000 successfully treated cases with positive feedback",
+  ];
+
   return (
-    <div style={{ fontFamily: "'Outfit', sans-serif", color: "#1a2a3a", background: "#f7fafd", minHeight: "100vh", overflowX: "hidden" }}>
-      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+    <div style={{ fontFamily: "'Outfit', sans-serif", color: "#0d1f3c", background: "#f8fafc", minHeight: "100vh", overflowX: "hidden" }}>
+      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
       <style>{`
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-up { animation: fadeUp 0.8s ease-out both; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-up  { animation: fadeUp 0.8s ease-out both; }
         .fade-up-d1 { animation: fadeUp 0.8s 0.1s ease-out both; }
-        .fade-up-d2 { animation: fadeUp 0.8s 0.2s ease-out both; }
-        .fade-up-d3 { animation: fadeUp 0.8s 0.3s ease-out both; }
-        .service-card { transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
-        .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(26, 60, 120, 0.12); }
-        .nav-link { position: relative; transition: color 0.3s; white-space: nowrap; }
-        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #2563eb, #06b6d4); transition: width 0.3s; }
+        .fade-up-d2 { animation: fadeUp 0.8s 0.22s ease-out both; }
+        .fade-up-d3 { animation: fadeUp 0.8s 0.34s ease-out both; }
+        .service-card { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+        .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(13,31,60,0.13) !important; }
+        .nav-link { position: relative; transition: color 0.3s; cursor: pointer; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #2563eb, #06b6d4); border-radius: 2px; transition: width 0.3s; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .btn-primary { background: linear-gradient(135deg, #1e4d8c, #0891b2); color: white; border: none; padding: 16px 40px; border-radius: 50px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s; letter-spacing: 0.5px; font-family: 'Outfit', sans-serif; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(30, 77, 140, 0.3); }
-        .btn-outline { background: transparent; color: #1e4d8c; border: 2px solid #1e4d8c; padding: 14px 36px; border-radius: 50px; font-size: 17px; font-weight: 500; cursor: pointer; transition: all 0.3s; font-family: 'Outfit', sans-serif; }
-        .btn-outline:hover { background: #1e4d8c; color: white; }
-        .lang-btn { padding: 7px 16px; border-radius: 20px; border: 1.5px solid #cbd5e1; background: transparent; cursor: pointer; font-weight: 500; font-size: 14px; transition: all 0.25s; font-family: 'Outfit', sans-serif; color: #64748b; }
+        .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1e4d8c 0%, #0891b2 100%); color: white; border: none; padding: 16px 38px; border-radius: 50px; font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: 'Outfit', sans-serif; letter-spacing: 0.2px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(8,145,178,0.38); }
+        .btn-glass { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: white; border: 1.5px solid rgba(255,255,255,0.38); padding: 14px 34px; border-radius: 50px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.3s; font-family: 'Outfit', sans-serif; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .btn-glass:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.6); }
+        .lang-btn { padding: 6px 14px; border-radius: 20px; border: 1.5px solid rgba(203,213,225,0.9); background: transparent; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.25s; font-family: 'Outfit', sans-serif; color: #64748b; }
         .lang-btn.active { background: linear-gradient(135deg, #1e4d8c, #0891b2); color: white; border-color: transparent; }
-        .input-field { width: 100%; padding: 16px 20px; border: 1.5px solid #e2e8f0; border-radius: 12px; font-size: 17px; font-family: 'Outfit', sans-serif; transition: all 0.3s; background: white; outline: none; color: #1a2a3a; }
-        .input-field:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+        .input-field { width: 100%; padding: 15px 20px; border: 1.5px solid #e2e8f0; border-radius: 12px; font-size: 16px; font-family: 'Outfit', sans-serif; transition: all 0.3s; background: white; outline: none; color: #0d1f3c; }
+        .input-field:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
         .input-field::placeholder { color: #94a3b8; }
-        @media (max-width: 768px) {
-          .hero-content { text-align: center; }
-          .about-row { flex-direction: column !important; }
-          .about-text-col { text-align: center; }
+        .contact-card { transition: transform 0.25s; }
+        .contact-card:hover { transform: translateX(4px); }
+        .gmaps-link:hover { background: #f0f6ff !important; }
+        @media (max-width: 1024px) {
+          .about-grid { grid-template-columns: 1fr !important; }
+          .about-features { display: none !important; }
+        }
+        @media (max-width: 900px) {
+          .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 640px) {
           .services-grid { grid-template-columns: 1fr !important; }
           .contact-grid { grid-template-columns: 1fr !important; }
           .nav-links { display: none !important; }
           .mobile-toggle { display: block !important; }
-          .stat-row { flex-direction: column; gap: 16px !important; }
+          .stat-row { flex-direction: column; gap: 12px !important; }
+          .footer-inner { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
         }
       `}</style>
 
-      {/* NAVBAR — Logo only (bigger) + nav links */}
+      {/* NAVBAR */}
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
-        background: scrolled ? "rgba(255,255,255,0.95)" : "transparent",
+        background: scrolled ? "rgba(255,255,255,0.97)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(226,232,240,0.6)" : "none",
         transition: "all 0.4s ease",
-        padding: scrolled ? "8px 0" : "14px 0",
+        padding: scrolled ? "10px 0" : "18px 0",
       }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          {/* LOGO — original horizontal logo, big */}
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ cursor: "pointer" }} onClick={() => scrollTo("hero")}>
-            <img src={LOGO_ORIG} alt="Fizikomed" style={{ height: scrolled ? 50 : 60, objectFit: "contain", transition: "height 0.3s" }} />
+            <img src={LOGO_ORIG} alt="Fizikomed" style={{ height: scrolled ? 46 : 56, objectFit: "contain", transition: "height 0.3s", display: "block" }} />
           </div>
-          {/* NAV LINKS: Bemutatkozás | Szolgáltatások | Kapcsolat */}
-          <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 32 }}>
-            <span className={`nav-link ${activeSection === "about" ? "active" : ""}`}
-              style={{ cursor: "pointer", fontSize: 17, fontWeight: 500, color: activeSection === "about" ? "#1e4d8c" : "#64748b" }}
-              onClick={() => scrollTo("about")}>{t.nav.about}</span>
-            <span className={`nav-link ${activeSection === "services" ? "active" : ""}`}
-              style={{ cursor: "pointer", fontSize: 17, fontWeight: 500, color: activeSection === "services" ? "#1e4d8c" : "#64748b" }}
-              onClick={() => scrollTo("services")}>{t.nav.services}</span>
-            <span className={`nav-link ${activeSection === "contact" ? "active" : ""}`}
-              style={{ cursor: "pointer", fontSize: 17, fontWeight: 500, color: activeSection === "contact" ? "#1e4d8c" : "#64748b" }}
-              onClick={() => scrollTo("contact")}>{t.nav.contact}</span>
-            <div style={{ display: "flex", gap: 4, marginLeft: 8 }}>
-              <button className={`lang-btn ${lang === "hu" ? "active" : ""}`} onClick={() => setLang("hu")}>HU</button>
-              <button className={`lang-btn ${lang === "en" ? "active" : ""}`} onClick={() => setLang("en")}>EN</button>
+          <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 36 }}>
+            {[{ id: "about", label: t.nav.about }, { id: "services", label: t.nav.services }, { id: "contact", label: t.nav.contact }].map(({id, label}) => (
+              <span key={id} className={`nav-link${activeSection === id ? " active" : ""}`}
+                style={{ fontSize: 16, fontWeight: 500, color: scrolled ? (activeSection === id ? "#1e4d8c" : "#64748b") : (activeSection === id ? "white" : "rgba(255,255,255,0.82)"), transition: "color 0.3s" }}
+                onClick={() => scrollTo(id)}>{label}</span>
+            ))}
+            <div style={{ display: "flex", gap: 5 }}>
+              <button className={`lang-btn${lang === "hu" ? " active" : ""}`} onClick={() => setLang("hu")}>HU</button>
+              <button className={`lang-btn${lang === "en" ? " active" : ""}`} onClick={() => setLang("en")}>EN</button>
             </div>
           </div>
-          {/* Mobile menu */}
           <div className="mobile-toggle" style={{ display: "none" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <div style={{ display: "flex", gap: 4 }}>
-                <button className={`lang-btn ${lang === "hu" ? "active" : ""}`} onClick={() => setLang("hu")}>HU</button>
-                <button className={`lang-btn ${lang === "en" ? "active" : ""}`} onClick={() => setLang("en")}>EN</button>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ display: "flex", gap: 5 }}>
+                <button className={`lang-btn${lang === "hu" ? " active" : ""}`} onClick={() => setLang("hu")}>HU</button>
+                <button className={`lang-btn${lang === "en" ? " active" : ""}`} onClick={() => setLang("en")}>EN</button>
               </div>
-              <button onClick={() => setMobileMenu(!mobileMenu)} style={{ background: "none", border: "none", cursor: "pointer", padding: 8 }}>
-                <svg width="28" height="28" fill="none" stroke="#1e4d8c" strokeWidth="2.5"><path d={mobileMenu ? "M6 6l16 16M6 22L22 6" : "M3 7h22M3 14h22M3 21h22"} /></svg>
+              <button onClick={() => setMobileMenu(!mobileMenu)} style={{ background: "none", border: "none", cursor: "pointer", padding: 6 }}>
+                <svg width="26" height="26" fill="none" stroke={scrolled ? "#1e4d8c" : "white"} strokeWidth="2.2" strokeLinecap="round">
+                  <path d={mobileMenu ? "M6 6l14 14M6 20L20 6" : "M3 7h18M3 13h18M3 19h18"} />
+                </svg>
               </button>
             </div>
           </div>
         </div>
         {mobileMenu && (
-          <div style={{ background: "white", padding: "20px 24px", borderTop: "1px solid #e2e8f0", display: "flex", flexDirection: "column", gap: 20 }}>
-            <span style={{ cursor: "pointer", fontSize: 18, fontWeight: 500, color: "#1e4d8c" }} onClick={() => scrollTo("about")}>{t.nav.about}</span>
-            <span style={{ cursor: "pointer", fontSize: 18, fontWeight: 500, color: "#1e4d8c" }} onClick={() => scrollTo("services")}>{t.nav.services}</span>
-            <span style={{ cursor: "pointer", fontSize: 18, fontWeight: 500, color: "#1e4d8c" }} onClick={() => scrollTo("contact")}>{t.nav.contact}</span>
+          <div style={{ background: "white", padding: "20px 32px 28px", borderTop: "1px solid #e8edf3", display: "flex", flexDirection: "column", gap: 18 }}>
+            {[{ id: "about", label: t.nav.about }, { id: "services", label: t.nav.services }, { id: "contact", label: t.nav.contact }].map(({id, label}) => (
+              <span key={id} style={{ cursor: "pointer", fontSize: 18, fontWeight: 500, color: "#0d1f3c" }} onClick={() => scrollTo(id)}>{label}</span>
+            ))}
           </div>
         )}
       </nav>
 
-      {/* HERO — Cover Photo */}
+      {/* HERO */}
       <section id="hero" style={{
         minHeight: "100vh", display: "flex", alignItems: "center", position: "relative", overflow: "hidden",
-        backgroundImage: `url(${COVER_IMAGE})`,
-        backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat",
+        backgroundImage: "url(" + COVER_IMAGE + ")",
+        backgroundSize: "cover", backgroundPosition: "center center", backgroundRepeat: "no-repeat",
       }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(10,25,50,0.45) 0%, rgba(10,25,50,0.15) 50%, rgba(10,25,50,0.35) 100%)" }} />
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "140px 24px 100px", width: "100%", position: "relative", zIndex: 1 }}>
-          <div className="hero-content" style={{ textAlign: "center", maxWidth: 750, margin: "0 auto" }}>
-            <div className="fade-up" style={{ display: "inline-block", background: "rgba(255,255,255,0.12)", backdropFilter: "blur(10px)", borderRadius: 50, padding: "10px 24px", marginBottom: 28, border: "1px solid rgba(255,255,255,0.18)" }}>
-              <span style={{ color: "#7dd3fc", fontWeight: 600, fontSize: 15, letterSpacing: 3, textTransform: "uppercase" }}>{t.hero.subtitle}</span>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(140deg, rgba(8,18,46,0.78) 0%, rgba(8,18,46,0.48) 55%, rgba(8,18,46,0.62) 100%)" }} />
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "140px 32px 100px", width: "100%", position: "relative", zIndex: 1 }}>
+          <div className="hero-content" style={{ maxWidth: 680 }}>
+            <div className="fade-up" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "rgba(255,255,255,0.1)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderRadius: 50, padding: "9px 22px", marginBottom: 30, border: "1px solid rgba(255,255,255,0.2)" }}>
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#38bdf8" }} />
+              <span style={{ color: "#bae6fd", fontWeight: 600, fontSize: 13, letterSpacing: 3, textTransform: "uppercase" }}>{t.hero.subtitle}</span>
             </div>
-            <h1 className="fade-up-d1" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(38px, 5vw, 62px)", fontWeight: 600, color: "white", lineHeight: 1.15, marginBottom: 28, textShadow: "0 2px 20px rgba(0,0,0,0.3)" }}>
+            <h1 className="fade-up-d1" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(38px, 5.2vw, 64px)", fontWeight: 700, color: "white", lineHeight: 1.12, marginBottom: 26 }}>
               {t.hero.headline}
             </h1>
-            <p className="fade-up-d2" style={{ color: "rgba(255,255,255,0.9)", fontSize: 22, lineHeight: 1.7, marginBottom: 40, textShadow: "0 1px 10px rgba(0,0,0,0.2)" }}>
+            <p className="fade-up-d2" style={{ color: "rgba(255,255,255,0.82)", fontSize: 20, lineHeight: 1.7, marginBottom: 46, maxWidth: 500 }}>
               {t.hero.ctaSub}
             </p>
-            <div className="fade-up-d3" style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center" }}>
-              <button className="btn-outline" style={{ color: "white", borderColor: "rgba(255,255,255,0.5)", backdropFilter: "blur(4px)", fontSize: 18 }} onClick={() => scrollTo("about")}>
-                {t.nav.about}
-              </button>
-              <button className="btn-outline" style={{ color: "white", borderColor: "rgba(255,255,255,0.5)", backdropFilter: "blur(4px)", fontSize: 18 }} onClick={() => scrollTo("services")}>
-                {t.nav.services}
-              </button>
-              <button className="btn-primary" style={{ background: "linear-gradient(135deg, #06b6d4, #0ea5e9)", fontSize: 19, padding: "18px 44px", boxShadow: "0 6px 25px rgba(6,182,212,0.35)" }} onClick={() => scrollTo("contact")}>
-                {t.nav.contact} →
-              </button>
+            <div className="fade-up-d3" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <button className="btn-glass" onClick={() => scrollTo("about")}>{t.nav.about}</button>
+              <button className="btn-glass" onClick={() => scrollTo("services")}>{t.nav.services}</button>
+              <button className="btn-primary" onClick={() => scrollTo("contact")}>{t.nav.contact} &rarr;</button>
             </div>
           </div>
         </div>
-        <svg style={{ position: "absolute", bottom: -2, left: 0, width: "100%", height: 80 }} viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f7fafd" />
+        <svg style={{ position: "absolute", bottom: -1, left: 0, width: "100%", height: 80 }} viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path d="M0,44 C380,80 1060,0 1440,52 L1440,80 L0,80 Z" fill="#f8fafc" />
         </svg>
       </section>
 
       {/* PAIN POINTS */}
-      <section id="painpoints" style={{ padding: "90px 24px 70px", background: "#f7fafd" }}>
-        <div style={{ maxWidth: 850, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(20px, 2.8vw, 26px)", color: "#334155", lineHeight: 1.9, fontStyle: "italic" }}>
+      <section id="painpoints" style={{ padding: "100px 32px 84px", background: "#f8fafc" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto", textAlign: "center" }}>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(18px, 2.4vw, 23px)", color: "#475569", lineHeight: 2.1, fontStyle: "italic" }}>
             {t.painPoints}
           </p>
-          <p style={{ marginTop: 32, fontWeight: 700, fontSize: "clamp(26px, 3.5vw, 36px)", background: "linear-gradient(135deg, #1e4d8c, #0891b2)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+          <p style={{ marginTop: 44, fontWeight: 800, fontSize: "clamp(24px, 3vw, 36px)", background: "linear-gradient(135deg, #0d1f3c 0%, #0891b2 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
             {t.painSolution}
           </p>
-          <div style={{ width: 70, height: 3, background: "linear-gradient(90deg, #1e4d8c, #0891b2)", margin: "32px auto 0", borderRadius: 2 }} />
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginTop: 36 }}>
+            <div style={{ width: 44, height: 2, background: "linear-gradient(90deg, transparent, #0891b2)", borderRadius: 2 }} />
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#0891b2" }} />
+            <div style={{ width: 44, height: 2, background: "linear-gradient(90deg, #0891b2, transparent)", borderRadius: 2 }} />
+          </div>
         </div>
       </section>
 
       {/* SERVICES */}
-      <section id="services" style={{ padding: "90px 24px 110px", background: "linear-gradient(180deg, #eef4fb 0%, #f7fafd 100%)" }}>
+      <section id="services" style={{ padding: "80px 32px 110px", background: "linear-gradient(180deg, #eef5fc 0%, #f8fafc 100%)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 60 }}>
-            <span style={{ color: "#0891b2", fontWeight: 600, fontSize: 15, letterSpacing: 3, textTransform: "uppercase" }}>{t.services.tag}</span>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(34px, 4.5vw, 52px)", fontWeight: 600, color: "#0f2847", marginTop: 12, marginBottom: 18 }}>{t.services.title}</h2>
-            <p style={{ color: "#64748b", fontSize: 19, maxWidth: 650, margin: "0 auto", lineHeight: 1.7 }}>{t.services.subtitle}</p>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <span style={{ display: "inline-block", color: "#0891b2", fontWeight: 700, fontSize: 13, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 16 }}>{t.services.tag}</span>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 700, color: "#0d1f3c", marginBottom: 18, lineHeight: 1.2 }}>{t.services.title}</h2>
+            <p style={{ color: "#64748b", fontSize: 18, maxWidth: 600, margin: "0 auto", lineHeight: 1.8 }}>{t.services.subtitle}</p>
           </div>
-          <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 22 }}>
-            {t.services.items.map((s, i) => (
-              <div key={i} className="service-card" style={{
-                background: "white", borderRadius: 18, padding: "30px 26px",
-                border: "1px solid rgba(226,232,240,0.8)", cursor: "default",
-              }}>
-                <div style={{ width: 54, height: 54, borderRadius: 14, background: "linear-gradient(135deg, rgba(30,77,140,0.08), rgba(8,145,178,0.1))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, marginBottom: 18 }}>{s.icon}</div>
-                <h3 style={{ fontWeight: 600, fontSize: 19, color: "#0f2847", marginBottom: 10 }}>{s.title}</h3>
-                <p style={{ color: "#64748b", fontSize: 16, lineHeight: 1.7 }}>{s.desc}</p>
-              </div>
-            ))}
+          <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+            {t.services.items.map((s, i) => {
+              const Icon = SvgIcons[i] || SvgSpine;
+              return (
+                <div key={i} className="service-card" style={{
+                  background: "white", borderRadius: 20, padding: "32px 28px",
+                  border: "1px solid rgba(226,232,240,0.8)",
+                  boxShadow: "0 4px 20px rgba(13,31,60,0.05)",
+                }}>
+                  <div style={{
+                    width: 52, height: 52, borderRadius: 14,
+                    background: "linear-gradient(135deg, rgba(30,77,140,0.1), rgba(8,145,178,0.13))",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    marginBottom: 20, color: "#0891b2",
+                  }}>
+                    <Icon />
+                  </div>
+                  <h3 style={{ fontWeight: 600, fontSize: 17, color: "#0d1f3c", marginBottom: 10, lineHeight: 1.4 }}>{s.title}</h3>
+                  <p style={{ color: "#64748b", fontSize: 15, lineHeight: 1.78 }}>{s.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ABOUT — Left aligned, no photo */}
-      <section id="about" style={{ padding: "100px 24px", maxWidth: 1000, margin: "0 auto" }}>
-        <span style={{ color: "#0891b2", fontWeight: 600, fontSize: 15, letterSpacing: 3, textTransform: "uppercase", display: "block" }}>{t.about.tag}</span>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(34px, 4.5vw, 52px)", fontWeight: 600, color: "#0f2847", marginTop: 8, marginBottom: 4 }}>{t.about.title}</h2>
-        <p style={{ color: "#0891b2", fontWeight: 500, fontSize: 19, marginBottom: 24, lineHeight: 1.4 }}>{t.about.role}</p>
-        <p style={{ color: "#475569", lineHeight: 1.9, fontSize: 18, marginBottom: 36, textIndent: "2.5em", paddingLeft: "1em", borderLeft: "3px solid #0891b2" }}>{t.about.bio}</p>
-        <div className="stat-row" style={{ display: "flex", gap: 20 }}>
-          {t.about.stats.map((s, i) => (
-            <div key={i} style={{ textAlign: "center", flex: 1, padding: "22px 16px", background: "linear-gradient(135deg, rgba(30,77,140,0.04), rgba(8,145,178,0.06))", borderRadius: 16, border: "1px solid rgba(30,77,140,0.08)" }}>
-              <div style={{ fontWeight: 700, fontSize: 32, background: "linear-gradient(135deg, #1e4d8c, #0891b2)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{s.num}</div>
-              <div style={{ color: "#64748b", fontSize: 14, fontWeight: 500, marginTop: 6 }}>{s.label}</div>
+      {/* ABOUT */}
+      <section id="about" style={{ padding: "110px 32px", background: "#f8fafc" }}>
+        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
+          <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+            <div>
+              <span style={{ display: "inline-block", color: "#0891b2", fontWeight: 700, fontSize: 13, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 18 }}>{t.about.tag}</span>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(30px, 4vw, 46px)", fontWeight: 700, color: "#0d1f3c", marginBottom: 10, lineHeight: 1.15 }}>{t.about.title}</h2>
+              <p style={{ color: "#0891b2", fontWeight: 600, fontSize: 18, marginBottom: 30 }}>{t.about.role}</p>
+              <div style={{ borderLeft: "3px solid #0ea5e9", paddingLeft: 24, marginBottom: 48 }}>
+                <p style={{ color: "#475569", lineHeight: 1.95, fontSize: 17 }}>{t.about.bio}</p>
+              </div>
+              <div className="stat-row" style={{ display: "flex", gap: 16 }}>
+                {t.about.stats.map((s, i) => (
+                  <div key={i} style={{
+                    flex: 1, textAlign: "center", padding: "24px 14px",
+                    background: "white", borderRadius: 16,
+                    border: "1px solid rgba(226,232,240,0.8)",
+                    boxShadow: "0 4px 20px rgba(13,31,60,0.06)",
+                  }}>
+                    <div style={{ fontWeight: 800, fontSize: 34, background: "linear-gradient(135deg, #1e4d8c, #0891b2)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{s.num}</div>
+                    <div style={{ color: "#64748b", fontSize: 13, fontWeight: 600, marginTop: 7, textTransform: "uppercase", letterSpacing: 0.8 }}>{s.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+            <div className="about-features" style={{ display: "flex", flexDirection: "column", gap: 16, paddingTop: 60 }}>
+              {aboutFeatures.map((text, i) => (
+                <div key={i} style={{
+                  display: "flex", gap: 16, alignItems: "flex-start",
+                  padding: "22px 24px", background: "white", borderRadius: 16,
+                  border: "1px solid rgba(226,232,240,0.8)",
+                  boxShadow: "0 4px 20px rgba(13,31,60,0.04)",
+                }}>
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: "linear-gradient(135deg, #1e4d8c, #0891b2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </div>
+                  <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.65 }}>{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CONTACT */}
-      <section id="contact" style={{ padding: "100px 24px", background: "linear-gradient(180deg, #eef4fb 0%, #f7fafd 100%)" }}>
+      <section id="contact" style={{ padding: "110px 32px 120px", background: "linear-gradient(180deg, #eef5fc 0%, #f8fafc 100%)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 60 }}>
-            <span style={{ color: "#0891b2", fontWeight: 600, fontSize: 15, letterSpacing: 3, textTransform: "uppercase" }}>{t.contact.tag}</span>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(34px, 4.5vw, 52px)", fontWeight: 600, color: "#0f2847", marginTop: 12, marginBottom: 18 }}>{t.contact.title}</h2>
-            <p style={{ color: "#64748b", fontSize: 19, maxWidth: 600, margin: "0 auto" }}>{t.contact.subtitle}</p>
+          <div style={{ textAlign: "center", marginBottom: 72 }}>
+            <span style={{ display: "inline-block", color: "#0891b2", fontWeight: 700, fontSize: 13, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 16 }}>{t.contact.tag}</span>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 700, color: "#0d1f3c", marginBottom: 18, lineHeight: 1.2 }}>{t.contact.title}</h2>
+            <p style={{ color: "#64748b", fontSize: 18, maxWidth: 520, margin: "0 auto", lineHeight: 1.75 }}>{t.contact.subtitle}</p>
           </div>
-          <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 40 }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              {[
-                { icon: "📍", label: t.contact.address, value: t.contact.addressVal },
-                { icon: "📞", label: t.contact.phone, value: "+36 70 770 9053" },
-                { icon: "✉️", label: t.contact.email, value: "testkepzes@gmail.com" },
-                { icon: "🕐", label: t.contact.hours, value: t.contact.hoursVal },
-              ].map((c, i) => (
-                <div key={i} style={{ display: "flex", gap: 16, alignItems: "flex-start", background: "white", padding: "22px 26px", borderRadius: 16, border: "1px solid #e8edf3" }}>
-                  <div style={{ width: 50, height: 50, borderRadius: 12, background: "linear-gradient(135deg, #1e4d8c, #0891b2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>{c.icon}</div>
+          <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.15fr", gap: 44 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              {contactItems.map(({Icon, key}, i) => (
+                <div key={key} className="contact-card" style={{
+                  display: "flex", gap: 16, alignItems: "flex-start",
+                  background: "white", padding: "20px 24px", borderRadius: 16,
+                  border: "1px solid rgba(226,232,240,0.7)",
+                  boxShadow: "0 2px 12px rgba(13,31,60,0.05)",
+                }}>
+                  <div style={{
+                    width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+                    background: "linear-gradient(135deg, #1e4d8c, #0891b2)",
+                    display: "flex", alignItems: "center", justifyContent: "center", color: "white",
+                  }}>
+                    <Icon />
+                  </div>
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: 16, color: "#1e4d8c", marginBottom: 5 }}>{c.label}</div>
-                    <div style={{ color: "#475569", fontSize: 17, whiteSpace: "pre-line", lineHeight: 1.6 }}>{c.value}</div>
+                    <div style={{ fontWeight: 700, fontSize: 13, color: "#0891b2", marginBottom: 5, textTransform: "uppercase", letterSpacing: 0.8 }}>{contactLabels[i]}</div>
+                    <div style={{ color: "#475569", fontSize: 16, whiteSpace: "pre-line", lineHeight: 1.65 }}>{contactValues[i]}</div>
                   </div>
                 </div>
               ))}
-              {/* GOOGLE MAPS — OpenStreetMap fallback that works without API key */}
-              <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #e8edf3", height: 300 }}>
+              <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(226,232,240,0.7)", boxShadow: "0 2px 12px rgba(13,31,60,0.05)", height: 260, marginTop: 6 }}>
                 <iframe
-                  title="Fizikomed - Ürömi Egészségház"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=18.985%2C47.597%2C18.998%2C47.604&layer=mapnik&marker=47.6005%2C18.9916"
+                  title="Fizikomed helyszín"
+                  src="https://maps.google.com/maps?q=47.6005,18.9914&z=16&output=embed&hl=hu"
                   width="100%"
-                  height="300"
-                  style={{ border: 0 }}
+                  height="260"
+                  style={{ border: 0, display: "block" }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
               <a
                 href="https://www.google.com/maps/search/Üröm+Dózsa+György+út+34+2096"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "block", textAlign: "center", color: "#1e4d8c", fontSize: 16, fontWeight: 600, textDecoration: "none", padding: "12px", background: "white", borderRadius: 12, border: "1px solid #e8edf3" }}
+                className="gmaps-link"
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                  color: "#1e4d8c", fontSize: 15, fontWeight: 600, textDecoration: "none",
+                  padding: "14px 20px", background: "white", borderRadius: 14,
+                  border: "1.5px solid rgba(30,77,140,0.15)",
+                  transition: "background 0.2s",
+                }}
               >
-                📍 {lang === "hu" ? "Megnyitás Google Maps-ben →" : "Open in Google Maps →"}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                {lang === "hu" ? "Megnyitás Google Maps-ben →" : "Open in Google Maps →"}
               </a>
             </div>
-            {/* Contact form */}
-            <div style={{ background: "white", borderRadius: 24, padding: "44px 40px", border: "1px solid #e8edf3", boxShadow: "0 10px 40px rgba(0,0,0,0.04)" }}>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 30, fontWeight: 600, color: "#0f2847", marginBottom: 32 }}>
+            <div style={{
+              background: "white", borderRadius: 24, padding: "48px 44px",
+              border: "1px solid rgba(226,232,240,0.7)",
+              boxShadow: "0 12px 48px rgba(13,31,60,0.08)",
+            }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 700, color: "#0d1f3c", marginBottom: 8 }}>
                 {lang === "hu" ? "Írjon nekünk" : "Write to us"}
               </h3>
+              <p style={{ color: "#94a3b8", fontSize: 15, marginBottom: 36 }}>{lang === "hu" ? "Hamarosan visszajelzünk!" : "We'll get back to you soon!"}</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
                 <div>
-                  <label style={{ fontSize: 15, fontWeight: 600, color: "#475569", display: "block", marginBottom: 7 }}>{t.contact.formName}</label>
+                  <label style={{ fontSize: 14, fontWeight: 600, color: "#475569", display: "block", marginBottom: 8 }}>{t.contact.formName}</label>
                   <input className="input-field" placeholder={lang === "hu" ? "Teljes neve" : "Your full name"} />
                 </div>
                 <div>
-                  <label style={{ fontSize: 15, fontWeight: 600, color: "#475569", display: "block", marginBottom: 7 }}>{t.contact.formEmail}</label>
+                  <label style={{ fontSize: 14, fontWeight: 600, color: "#475569", display: "block", marginBottom: 8 }}>{t.contact.formEmail}</label>
                   <input className="input-field" type="email" placeholder={lang === "hu" ? "pelda@email.com" : "example@email.com"} />
                 </div>
                 <div>
-                  <label style={{ fontSize: 15, fontWeight: 600, color: "#475569", display: "block", marginBottom: 7 }}>{t.contact.phone}</label>
+                  <label style={{ fontSize: 14, fontWeight: 600, color: "#475569", display: "block", marginBottom: 8 }}>{t.contact.phone}</label>
                   <input className="input-field" type="tel" placeholder="+36 ..." />
                 </div>
                 <div>
-                  <label style={{ fontSize: 15, fontWeight: 600, color: "#475569", display: "block", marginBottom: 7 }}>{t.contact.formMsg}</label>
+                  <label style={{ fontSize: 14, fontWeight: 600, color: "#475569", display: "block", marginBottom: 8 }}>{t.contact.formMsg}</label>
                   <textarea className="input-field" rows={5} placeholder={lang === "hu" ? "Miben segíthetünk?" : "How can we help?"} style={{ resize: "vertical" }} />
                 </div>
-                <button className="btn-primary" style={{ width: "100%", marginTop: 10, fontSize: 18 }}>
-                  {t.contact.formSend} →
+                <button className="btn-primary" style={{ width: "100%", marginTop: 8, justifyContent: "center", fontSize: 17, padding: "17px 40px" }}>
+                  {t.contact.formSend} &rarr;
                 </button>
               </div>
             </div>
@@ -423,24 +613,26 @@ function Fizikomed() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: "linear-gradient(165deg, #0f2847, #1a3f6f)", padding: "50px 24px 30px", color: "white" }}>
+      <footer style={{ background: "linear-gradient(150deg, #08112a 0%, #0d1f3c 60%, #0e2544 100%)", padding: "56px 32px 32px", color: "white" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 20, paddingBottom: 30, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+          <div className="footer-inner" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 24, paddingBottom: 32, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
             <div style={{ cursor: "pointer" }} onClick={() => scrollTo("hero")}>
-              <img src={LOGO_ORIG} alt="Fizikomed" style={{ height: 50, objectFit: "contain", filter: "brightness(10)" }} />
+              <img src={LOGO_ORIG} alt="Fizikomed" style={{ height: 46, objectFit: "contain", filter: "brightness(0) invert(1)", display: "block" }} />
             </div>
-            <div style={{ display: "flex", gap: 28 }}>
-              <span style={{ color: "rgba(255,255,255,0.6)", cursor: "pointer", fontSize: 16, fontWeight: 500 }} onClick={() => scrollTo("about")}>{t.nav.about}</span>
-              <span style={{ color: "rgba(255,255,255,0.6)", cursor: "pointer", fontSize: 16, fontWeight: 500 }} onClick={() => scrollTo("services")}>{t.nav.services}</span>
-              <span style={{ color: "rgba(255,255,255,0.6)", cursor: "pointer", fontSize: 16, fontWeight: 500 }} onClick={() => scrollTo("contact")}>{t.nav.contact}</span>
+            <div style={{ display: "flex", gap: 32 }}>
+              {[{ id: "about", label: t.nav.about }, { id: "services", label: t.nav.services }, { id: "contact", label: t.nav.contact }].map(({id, label}) => (
+                <span key={id} style={{ color: "rgba(255,255,255,0.5)", cursor: "pointer", fontSize: 15, fontWeight: 500, transition: "color 0.2s" }}
+                  onMouseEnter={e => e.target.style.color="rgba(255,255,255,0.85)"} onMouseLeave={e => e.target.style.color="rgba(255,255,255,0.5)"}
+                  onClick={() => scrollTo(id)}>{label}</span>
+              ))}
             </div>
           </div>
-          <div style={{ paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 14 }}>© 2025 Fizikomed. {t.footer.rights}</p>
-            <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-              <a href="tel:+36707709053" style={{ color: "rgba(255,255,255,0.5)", fontSize: 15, textDecoration: "none" }}>+36 70 770 9053</a>
-              <span style={{ color: "rgba(255,255,255,0.2)" }}>|</span>
-              <a href="mailto:testkepzes@gmail.com" style={{ color: "rgba(255,255,255,0.5)", fontSize: 15, textDecoration: "none" }}>testkepzes@gmail.com</a>
+          <div style={{ paddingTop: 28, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+            <p style={{ color: "rgba(255,255,255,0.32)", fontSize: 14 }}>&#169; 2025 Fizikomed. {t.footer.rights}</p>
+            <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
+              <a href="tel:+36707709053" style={{ color: "rgba(255,255,255,0.48)", fontSize: 14, textDecoration: "none" }}>+36 70 770 9053</a>
+              <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+              <a href="mailto:testkepzes@gmail.com" style={{ color: "rgba(255,255,255,0.48)", fontSize: 14, textDecoration: "none" }}>testkepzes@gmail.com</a>
             </div>
           </div>
         </div>

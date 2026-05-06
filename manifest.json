@@ -1,0 +1,10 @@
+{
+  "name": "Fizikomed",
+  "short_name": "Fizikomed",
+  "description": "Mozgás és Masszázsterápia – Deli Gabriella",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0d2238",
+  "theme_color": "#0d2238",
+  "icons": [{"src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml"}]
+}

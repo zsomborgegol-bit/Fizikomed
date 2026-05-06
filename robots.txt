@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fizikomed.com/sitemap.xml
